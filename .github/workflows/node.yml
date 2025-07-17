@@ -31,7 +31,7 @@ jobs:
 
       - name: use MongoDB from GitHub actions
         uses: supercharge/mongodb-github-action@1.12.0
-        with: ${{metrix.mongodb-version}}
+        with: ${{matrix.mongodb-version}}
 
       - name: Install backend dependencies
         run: npm ci
