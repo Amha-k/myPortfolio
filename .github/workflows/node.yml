@@ -12,12 +12,12 @@ jobs:
 
     env:
       CI: true
-      MONGO_URL: monogodb://locallhost/nasa
+      MONGO_URL: monogodb://localhost/portfolio
 
     strategy:
       matrix:
         node-version: [21.x, 20.x]
-        mongodb-version: [ '4.4']
+        mongodb-version: [ '8.0']
         
 
     steps:
@@ -31,7 +31,8 @@ jobs:
 
       - name: use MongoDB from GitHub actions
         uses: supercharge/mongodb-github-action@1.12.0
-        with: ${{matrix.mongodb-version}}
+        with: 
+          mongodb-version: ${{matrix.mongodb-version}}
 
       - name: Install backend dependencies
         run: npm ci
