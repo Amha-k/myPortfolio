@@ -2,3 +2,208 @@
 
 @tailwind utilities;
 
+/* Smooth scrolling and small utility tweaks */
+html {
+	scroll-behavior: smooth;
+}
+
+/* (Reverted persistent black-background overrides) */
+
+/* subtle radial background for hero */
+.hero-bg {
+	background-image: radial-gradient(circle at 10% 10%, rgba(14,165,233,0.06), transparent 20%), radial-gradient(circle at 90% 90%, rgba(16,185,129,0.04), transparent 20%);
+}
+
+/* Ensure animated classes from tailwind config are usable */
+
+/* Reusable keyframes for subtle entrance animations */
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes fadeIn {
+	from { opacity: 0; }
+	to { opacity: 1; }
+}
+
+@keyframes floatUp {
+	0% { transform: translateY(0); }
+	50% { transform: translateY(-6px); }
+	100% { transform: translateY(0); }
+}
+
+.animate-fadeInUp {
+	animation: fadeInUp 0.6s cubic-bezier(.16,.84,.44,1) forwards;
+}
+
+.animate-fadeIn {
+	animation: fadeIn 0.6s ease forwards;
+}
+
+.animate-float {
+	animation: floatUp 3.5s ease-in-out infinite;
+}
+
+.delay-200 {
+	animation-delay: 0.2s;
+}
+.delay-400 {
+	animation-delay: 0.4s;
+}
+
+/* Glass card and gentle content wrappers */
+.glass {
+	background: linear-gradient(180deg, rgba(255,255,255,0.6), rgba(255,255,255,0.45));
+	backdrop-filter: blur(6px);
+	-webkit-backdrop-filter: blur(6px);
+}
+
+.card {
+	border-radius: 12px;
+	box-shadow: 0 6px 24px rgba(16,24,40,0.08);
+}
+
+/* Small utility for focus-visible outlines */
+.focus-ring:focus {
+	outline: 2px solid rgba(56,189,248,0.24);
+	outline-offset: 2px;
+}
+
+/* Dynamic, shifting gradient for hero */
+@keyframes gradientShift {
+	0% { background-position: 0% 50%; }
+	50% { background-position: 100% 50%; }
+	100% { background-position: 0% 50%; }
+}
+
+.dynamic-hero {
+	background: linear-gradient(270deg, #bfdbfe 0%, #93c5fd 25%, #60a5fa 50%, #7dd3fc 75%, #bfdbfe 100%);
+	background-size: 200% 200%;
+	animation: gradientShift 8s ease infinite;
+}
+
+/* Dark variant for dynamic hero to keep night mode readable */
+.dark .dynamic-hero {
+	background: linear-gradient(270deg, #0f172a 0%, #0b1220 25%, #071133 50%, #09203a 75%, #071133 100%);
+	background-size: 200% 200%;
+}
+
+/* Large profile card placed to the side */
+.profile-side {
+	width: 100%;
+	max-width: 420px;
+	border-radius: 16px;
+	overflow: hidden;
+}
+
+.profile-photo {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+	display: block;
+}
+
+.profile-frame {
+	border-radius: 16px;
+	box-shadow: 0 12px 40px rgba(2,6,23,0.32);
+	transform: translateY(0);
+	transition: transform 400ms ease;
+}
+.profile-frame:hover { transform: translateY(-6px) scale(1.02); }
+
+/* Skill cloud / chips */
+.skill-cloud {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 12px;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem 0;
+}
+.skill-chip {
+	background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(255,255,255,0.8));
+	color: #0f172a;
+	padding: 10px 14px;
+	border-radius: 9999px;
+	font-weight: 600;
+	box-shadow: 0 8px 24px rgba(2,6,23,0.08);
+	transition: transform 300ms ease, box-shadow 300ms ease;
+}
+
+/* Large skill chip */
+.skill-chip-lg {
+  width: 96px;
+  height: 96px;
+  border-radius: 9999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8px 22px rgba(2,6,23,0.12);
+  transition: transform 220ms cubic-bezier(.2,.8,.2,1), box-shadow 220ms;
+}
+.skill-chip-lg:hover {
+  transform: translateY(-6px) scale(1.02);
+  box-shadow: 0 18px 40px rgba(2,6,23,0.14);
+}
+.skill-logo svg { width: 48px; height: 48px }
+.skill-logo img { width: 48px; height: 48px; object-fit: contain; filter: var(--logo-filter, none); }
+.skill-logo { line-height: 1 }
+@media (min-width: 768px) {
+  .skill-chip-lg { width: 110px; height: 110px }
+	.skill-logo { font-size: 2.25rem }
+}
+
+/* Skill name styling: ensure titles are pure black */
+.skill-name {
+	color: #000000 !important;
+	font-weight: 700;
+}
+
+/* (Black & white mode removed — restoring original color styles) */
+
+
+.skill-chip:hover {
+	transform: translateY(-6px) scale(1.06);
+	box-shadow: 0 18px 40px rgba(2,6,23,0.14);
+}
+
+/* Slightly different dark chips for dark mode */
+.dark .skill-chip {
+	background: linear-gradient(180deg, rgba(30,41,59,0.9), rgba(17,24,39,0.8));
+	color: #e6eef8;
+}
+
+/* Give chips a gentle float animation */
+.skill-chip {
+	animation: floatUp 6s ease-in-out infinite;
+}
+
+@keyframes floatSlow {
+	0% { transform: translateY(0) translateX(0); }
+	25% { transform: translateY(-6px) translateX(-4px); }
+	50% { transform: translateY(0) translateX(0); }
+	75% { transform: translateY(6px) translateX(4px); }
+	100% { transform: translateY(0) translateX(0); }
+}
+
+.animate-float-slow {
+	animation: floatSlow 7.5s ease-in-out infinite;
+}
+
+@keyframes pulseSoft {
+	0% { transform: scale(1); opacity: 0.9; }
+	50% { transform: scale(1.06); opacity: 1; }
+	100% { transform: scale(1); opacity: 0.9; }
+}
+
+.animate-pulse-soft {
+	animation: pulseSoft 3.2s ease-in-out infinite;
+}
+

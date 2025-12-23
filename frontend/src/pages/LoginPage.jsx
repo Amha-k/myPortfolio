@@ -28,7 +28,7 @@ export default function LoginPage() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="bg-black p-8 rounded shadow-md w-80 space-y-4"
+        className="bg-white dark:bg-gray-800 p-8 rounded shadow-md w-80 space-y-4"
       >
         <h2 className="text-2xl font-bold text-center">Admin Login</h2>
         {error && <p className="text-red-500 text-sm">{error}</p>}
@@ -52,7 +52,7 @@ export default function LoginPage() {
         />
         <button
           type="submit"
-          className="w-full bg-indigo-600 text-white p-2 rounded hover:bg-indigo-700"
+          className="w-full bg-teal-600 text-white p-2 rounded hover:bg-teal-700"
         >
           Login
         </button>

@@ -39,10 +39,10 @@ export default function ContactPage() {
   return (
     <section
       id="contact"
-      className="min-h-screen bg-white dark:bg-gray-900 py-16 px-6 flex justify-center items-center transition-colors duration-500"
+      className="min-h-screen bg-white py-16 px-6 flex items-start transition-colors duration-500"
     >
-      <div className="max-w-md w-full bg-gray-100 dark:bg-gray-800 p-8 rounded-lg shadow-lg animate-fadeInUp">
-        <h2 className="text-4xl font-bold mb-6 text-indigo-700 dark:text-indigo-400 text-center">
+      <div className="max-w-md w-full bg-gray-50 p-8 rounded-lg shadow-lg animate-fadeInUp">
+        <h2 className="text-4xl font-bold mb-6 text-sky-700">
           Contact Me
         </h2>
         <form onSubmit={handleSubmit} className="flex flex-col space-y-5">
@@ -53,7 +53,7 @@ export default function ContactPage() {
             value={formData.name}
             onChange={handleChange}
             required
-            className="rounded-md p-3 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:text-gray-200"
+            className="rounded-md p-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-300 bg-white"
           />
           <input
             name="email"
@@ -62,7 +62,7 @@ export default function ContactPage() {
             value={formData.email}
             onChange={handleChange}
             required
-            className="rounded-md p-3 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:text-gray-200"
+            className="rounded-md p-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-300 bg-white"
           />
           <textarea
             name="message"
@@ -71,12 +71,12 @@ export default function ContactPage() {
             value={formData.message}
             onChange={handleChange}
             required
-            className="rounded-md p-3 border border-gray-300 dark:border-gray-600 focus:outline-none focus:ring-2 focus:ring-indigo-400 dark:bg-gray-700 dark:text-gray-200"
+            className="rounded-md p-3 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-sky-300 bg-white"
           ></textarea>
           <button
             type="submit"
             disabled={loading}
-            className="bg-indigo-600 hover:bg-indigo-700 transition-colors duration-300 text-white rounded-md py-3 font-semibold shadow-md focus:outline-none focus:ring-4 focus:ring-indigo-400"
+            className="bg-sky-600 hover:bg-sky-700 transition-colors duration-300 text-white rounded-md py-3 font-semibold shadow-md focus:outline-none focus:ring-4 focus:ring-sky-300"
           >
             {loading ? "Sending..." : "Send Message"}
           </button>

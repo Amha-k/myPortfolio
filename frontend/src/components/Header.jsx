@@ -13,37 +13,38 @@ export default function Header({ darkMode, setDarkMode }) {
   // Close mobile menu when navigation clicked
   const handleLinkClick = () => setMenuOpen(false);
 
-  // Nav link style helper
+  // Smooth scroll to an on-page section (prevents unwanted route changes)
+  const scrollToSection = (e, id) => {
+    e && e.preventDefault();
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+    setMenuOpen(false);
+  };
+
+  // Nav link style helper (light-blue / sky palette)
   const isActive = (path) =>
     location.pathname === path
-      ? "text-indigo-600 dark:text-indigo-400 font-semibold"
-      : "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400";
+      ? "text-sky-600 dark:text-sky-400 font-semibold"
+      : "text-gray-700 dark:text-gray-300 hover:text-sky-600 dark:hover:text-sky-400";
 
   return (
-    <header className="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50">
+    <header className="bg-white/80 dark:bg-gray-900/70 backdrop-blur-sm sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo / Title */}
-        <Link to="/" className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+        <a href="#home" className="text-2xl font-bold text-teal-600 dark:text-teal-400 hover:scale-105 transform transition">
           MyPortfolio
-        </Link>
+        </a>
 
         {/* Desktop nav */}
-        <nav className="hidden md:flex space-x-8 items-center">
-          <Link to="/" onClick={handleLinkClick} className={isActive("/")}>
-            Home
-          </Link>
-          <Link to="/projects" onClick={handleLinkClick} className={isActive("/projects")}>
-            Projects
-          </Link>
-          <Link to="/contact" onClick={handleLinkClick} className={isActive("/contact")}>
-            Contact
-          </Link>
+        <nav className="hidden md:flex space-x-6 items-center">
+          <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className={`${isActive("/")} hover:underline decoration-sky-400 underline-offset-4 transition`}>Home</a>
+            <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className={`${isActive("/contact")} hover:underline decoration-sky-400 underline-offset-4 transition`}>Contact</a>
 
           {/* Dark mode toggle */}
           <button
             onClick={toggleDarkMode}
             aria-label="Toggle Dark Mode"
-            className="ml-6 p-2 rounded-full bg-indigo-100 dark:bg-indigo-700 hover:bg-indigo-200 dark:hover:bg-indigo-600 transition"
+            className="ml-4 p-2 rounded-full bg-sky-100 dark:bg-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600 transition focus-ring"
           >
             {darkMode ? (
               <svg
@@ -53,7 +54,6 @@ export default function Header({ darkMode, setDarkMode }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Sun icon */}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -69,7 +69,6 @@ export default function Header({ darkMode, setDarkMode }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Moon icon */}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -86,7 +85,7 @@ export default function Header({ darkMode, setDarkMode }) {
           <button
             onClick={toggleDarkMode}
             aria-label="Toggle Dark Mode"
-            className="mr-4 p-2 rounded-full bg-indigo-100 dark:bg-indigo-700 hover:bg-indigo-200 dark:hover:bg-indigo-600 transition"
+            className="mr-3 p-2 rounded-full bg-sky-100 dark:bg-sky-700 hover:bg-sky-200 dark:hover:bg-sky-600 transition focus-ring"
           >
             {darkMode ? (
               <svg
@@ -96,7 +95,6 @@ export default function Header({ darkMode, setDarkMode }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Sun icon */}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -112,7 +110,6 @@ export default function Header({ darkMode, setDarkMode }) {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Moon icon */}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -131,12 +128,11 @@ export default function Header({ darkMode, setDarkMode }) {
             {menuOpen ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 text-indigo-600 dark:text-indigo-400"
+                className="h-8 w-8 text-teal-600 dark:text-teal-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Close icon */}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -147,12 +143,11 @@ export default function Header({ darkMode, setDarkMode }) {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-8 w-8 text-indigo-600 dark:text-indigo-400"
+                className="h-8 w-8 text-teal-600 dark:text-teal-400"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                {/* Hamburger icon */}
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
@@ -169,31 +164,10 @@ export default function Header({ darkMode, setDarkMode }) {
           <nav className="md:hidden bg-white dark:bg-gray-800 absolute top-full left-0 w-full shadow-md">
             <ul className="flex flex-col p-4 space-y-4">
               <li>
-                <Link
-                  to="/"
-                  onClick={handleLinkClick}
-                  className={isActive("/")}
-                >
-                  Home
-                </Link>
+                <a href="#home" onClick={(e) => scrollToSection(e, 'home')} className={isActive("/")}>Home</a>
               </li>
               <li>
-                <Link
-                  to="/projects"
-                  onClick={handleLinkClick}
-                  className={isActive("/projects")}
-                >
-                  Projects
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contact"
-                  onClick={handleLinkClick}
-                  className={isActive("/contact")}
-                >
-                  Contact
-                </Link>
+                <a href="#contact" onClick={(e) => scrollToSection(e, 'contact')} className={isActive("/contact")}>Contact</a>
               </li>
             </ul>
           </nav>

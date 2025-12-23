@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "https:5000//api/portfolio", // change this to your backend
+  baseURL: "http://localhost:5000/api/portfolio", // backend base
 });
 
 export default instance;

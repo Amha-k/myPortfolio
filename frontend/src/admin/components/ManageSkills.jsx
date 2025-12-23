@@ -3,7 +3,7 @@ import axios from "axios";
 
 export default function ManageSkills() {
   const [skills, setSkills] = useState([]);
-  const [form, setForm] = useState({ name: "", level: "" });
+  const [form, setForm] = useState({ name: "", level: "", logoSrc: "", color: "" });
   const [editingId, setEditingId] = useState(null);
 
   // Get token from localStorage
@@ -39,21 +39,23 @@ export default function ManageSkills() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!form.name || !form.level) return;
- const payload = {
-    name: form.name,
-    level: Number(form.level), 
-  };
+    const payload = {
+      name: form.name,
+      level: Number(form.level),
+      logoSrc: form.logoSrc || undefined,
+      color: form.color || undefined,
+    };
     try {
       if (editingId) {
         await axios.put(
           `http://localhost:5000/api/portfolio/skills/admin/${editingId}`,
-          form,
+          payload,
           axiosConfig
         );
       } else {
         await axios.post(
           "http://localhost:5000/api/portfolio/skills/admin",
-          form,
+          payload,
           axiosConfig
         );
       }
@@ -102,34 +104,49 @@ export default function ManageSkills() {
           onChange={handleChange}
           className="p-2 rounded border w-full"
         />
-        <button
-          type="submit"
-          className="bg-indigo-600 text-white px-4 py-2 rounded"
-        >
-          {editingId ? "Update Skill" : "Add Skill"}
-        </button>
+        <input
+          name="logoSrc"
+          type="text"
+          placeholder="Logo URL (optional)"
+          value={form.logoSrc}
+          onChange={handleChange}
+          className="p-2 rounded border w-full"
+        />
+        <input
+          name="color"
+          type="text"
+          placeholder="Color gradient/tone (optional)"
+          value={form.color}
+          onChange={handleChange}
+          className="p-2 rounded border w-full"
+        />
+        <div className="flex gap-2 items-center">
+          <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded">
+            {editingId ? "Update Skill" : "Add Skill"}
+          </button>
+          {form.logoSrc ? (
+            <img src={form.logoSrc} alt="preview" className="w-8 h-8 object-contain" />
+          ) : null}
+        </div>
       </form>
 
       <ul className="space-y-2">
         {skills.map((skill) => (
-          <li
-            key={skill._id}
-            className="flex justify-between items-center border p-2 rounded"
-          >
-            <div>
-              <strong>{skill.name}</strong> - {skill.level}%
+          <li key={skill._id} className="flex justify-between items-center border p-2 rounded">
+            <div className="flex items-center gap-3">
+              {skill.logoSrc ? (
+                <img src={skill.logoSrc} alt={skill.name} className="w-8 h-8 object-contain" />
+              ) : null}
+              <div>
+                <strong>{skill.name}</strong>
+                <div className="text-sm text-gray-600">{skill.level}%</div>
+              </div>
             </div>
             <div className="space-x-2">
-              <button
-                onClick={() => handleEdit(skill)}
-                className="bg-yellow-500 text-white px-3 py-1 rounded"
-              >
+              <button onClick={() => handleEdit(skill)} className="bg-yellow-500 text-white px-3 py-1 rounded">
                 Edit
               </button>
-              <button
-                onClick={() => handleDelete(skill._id)}
-                className="bg-red-600 text-white px-3 py-1 rounded"
-              >
+              <button onClick={() => handleDelete(skill._id)} className="bg-red-600 text-white px-3 py-1 rounded">
                 Delete
               </button>
             </div>
