@@ -11,12 +11,12 @@ export default function HomePage() {
         className="min-h-screen dynamic-hero flex flex-col md:flex-row items-center justify-center px-6 py-12 text-white transition-colors duration-500"
       >
         <div className="md:w-1/2 max-w-2xl text-center md:text-left">
-          <h1 className="text-5xl md:text-6xl font-extrabold mb-4 drop-shadow-lg">
-            Welcome to My Portfolio
+          <h1 className="text-4xl md:text-5xl font-extrabold mb-3 drop-shadow-sm">
+            Hi — I’m {name}.
           </h1>
 
           <p className="text-lg md:text-xl max-w-xl mb-8 opacity-95">
-            Hi, my name is {name}. I build modern, accessible backend  experiences with an emphasis on clean design and building reliable APIs, order management systems, and backend logic for real-world applications. Experienced with Node.js, Express, databases, authentication, webscraping, and payment workflows.
+            I design and implement backend systems for web products: reliable APIs, order management flows, authentication, and data processing. Recent work includes payment integrations, web scraping for data pipelines, and building tooling to make teams move faster.
           </p>
 
           <div className="flex items-center gap-4 justify-center md:justify-start">

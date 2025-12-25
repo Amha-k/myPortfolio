@@ -8,6 +8,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon app.js",
+    "migrate:links": "node scripts/migrate_links_to_url.js",
     "test": "echo \"No tests specified\" && exit 0",
     "build": "echo \"No build step required\""
 

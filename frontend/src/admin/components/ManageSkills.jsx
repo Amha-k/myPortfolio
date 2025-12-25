@@ -94,7 +94,7 @@ export default function ManageSkills() {
           placeholder="Skill Name"
           value={form.name}
           onChange={handleChange}
-          className="p-2 rounded border w-full"
+          className="p-2 rounded border w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
         <input
           name="level"
@@ -110,7 +110,7 @@ export default function ManageSkills() {
           placeholder="Logo URL (optional)"
           value={form.logoSrc}
           onChange={handleChange}
-          className="p-2 rounded border w-full"
+          className="p-2 rounded border w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
         <input
           name="color"
@@ -118,7 +118,7 @@ export default function ManageSkills() {
           placeholder="Color gradient/tone (optional)"
           value={form.color}
           onChange={handleChange}
-          className="p-2 rounded border w-full"
+          className="p-2 rounded border w-full bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
         <div className="flex gap-2 items-center">
           <button type="submit" className="bg-indigo-600 text-white px-4 py-2 rounded">

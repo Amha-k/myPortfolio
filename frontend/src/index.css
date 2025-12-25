@@ -207,3 +207,53 @@ html {
 	animation: pulseSoft 3.2s ease-in-out infinite;
 }
 
+/* Splash styles */
+.splash-neon {
+	text-shadow: 0 4px 18px rgba(59,130,246,0.12), 0 0 32px rgba(59,130,246,0.06);
+}
+
+.splash-tech-chip {
+	display: inline-block;
+	padding: 8px 12px;
+	border-radius: 9999px;
+	background: rgba(255,255,255,0.04);
+	color: #ffffff;
+	border: 1px solid rgba(255,255,255,0.06);
+	font-weight: 600;
+	transform-origin: center;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	.splash-tech-chip {
+		will-change: transform, opacity;
+	}
+}
+
+/* Per-letter title animation for splash */
+.splash-title-char {
+	display: inline-block;
+	opacity: 0;
+	transform: translateY(8px);
+	animation: fadeInUp 420ms cubic-bezier(.16,.84,.44,1) forwards;
+}
+
+/* Slightly extend fadeInUp timing for tech chips */
+.splash-tech-chip {
+	opacity: 0;
+	transform: translateY(6px);
+	animation: fadeInUp 560ms cubic-bezier(.16,.84,.44,1) forwards;
+}
+
+/* Typewriter cursor */
+.typewriter-cursor {
+	display: inline-block;
+	margin-left: 6px;
+	color: rgba(255,255,255,0.9);
+	animation: blink 1s steps(2) infinite;
+}
+
+@keyframes blink {
+	0%, 50% { opacity: 1; }
+	51%, 100% { opacity: 0; }
+}
+

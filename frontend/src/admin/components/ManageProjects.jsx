@@ -7,7 +7,8 @@ export default function ManageProjects() {
     title: "",
     description: "",
     imageUrl: "",
-    link: "",
+    url: "",
+    details: "",
   });
   const [editingId, setEditingId] = useState(null);
 
@@ -62,7 +63,7 @@ export default function ManageProjects() {
         );
       }
       console.log("Response:", res.data);
-      setForm({ title: "", description: "", imageUrl: "", link: "" });
+      setForm({ title: "", description: "", imageUrl: "", url: "", details: "" });
       setEditingId(null);
       fetchProjects();
     } catch (err) {
@@ -71,7 +72,13 @@ export default function ManageProjects() {
   };
 
   const handleEdit = (project) => {
-    setForm(project);
+    setForm({
+      title: project.title || "",
+      description: project.description || "",
+      imageUrl: project.imageUrl || "",
+      url: project.url || project.link || "",
+      details: project.details || "",
+    });
     setEditingId(project._id);
   };
 
@@ -97,31 +104,38 @@ export default function ManageProjects() {
       <form onSubmit={handleSubmit} className="space-y-4 mb-6">
         <input
           name="title"
-          placeholder="Title"
+          placeholder="Title — e.g. Personal portfolio site"
           value={form.title}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
         <textarea
           name="description"
-          placeholder="Description"
+          placeholder="Short overview (2–3 lines)"
           value={form.description}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
         <input
           name="imageUrl"
-          placeholder="Image URL"
+          placeholder="Image URL (optional)"
           value={form.imageUrl}
+          onChange={handleChange}
+          className="w-full p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
+        />
+        <input
+          name="url"
+          placeholder="Project URL (optional)"
+          value={form.url}
           onChange={handleChange}
           className="w-full p-2 border rounded"
         />
-        <input
-          name="link"
-          placeholder="Project Link"
-          value={form.link}
+        <textarea
+          name="details"
+          placeholder={"Case study / details — include lines like:\nRole: Developer\nTech: React, Node\nOutcome: Reduced load time by 30%"}
+          value={form.details}
           onChange={handleChange}
-          className="w-full p-2 border rounded"
+          className="w-full p-2 border rounded bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100"
         />
         <button
           type="submit"
@@ -145,7 +159,7 @@ export default function ManageProjects() {
             <h3 className="font-bold">{project.title}</h3>
             <p>{project.description}</p>
             <a
-              href={project.link}
+              href={project.url || project.link}
               target="_blank"
               rel="noopener noreferrer"
               className="text-indigo-600 underline"

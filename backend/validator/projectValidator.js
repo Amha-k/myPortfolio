@@ -1,11 +1,13 @@
 const joi = require('joi')
 
-const contactShcema = joi.object({
-    title:joi.string().required(),
-    description:joi.string().required(),
-    imageUrl:joi.string().required(),
-    link:joi.string().max(200).required()
-}
-).options({stripUnknown:true})
+const projectSchema = joi
+    .object({
+        title: joi.string().required(),
+        description: joi.string().required(),
+        details: joi.string().max(2000).optional(),
+        imageUrl: joi.string().uri().allow('').optional(),
+        url: joi.string().uri().max(200).allow('').optional(),
+    })
+    .options({ stripUnknown: true })
 
-module.exports =contactShcema;
+module.exports = projectSchema;

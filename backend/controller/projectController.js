@@ -9,6 +9,17 @@ const getProjects=async(req,res)=>{
     res.status(500).json({message:error})
   }
 }
+
+const getProjectById = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const project = await Project.findById(id);
+    if (!project) return res.status(404).json({ message: "Project not found" });
+    res.status(200).json(project);
+  } catch (error) {
+    res.status(500).json({ message: error.message || error });
+  }
+};
 const createProject = async (req, res) => {
   const { error, value } = projectValidator.validate(req.body);
   if (error) {
